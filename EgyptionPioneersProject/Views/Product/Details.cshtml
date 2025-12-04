@@ -1,0 +1,26 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Product Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+
+    <h2>@Model.Pr_Name</h2>
+    <hr />
+
+    <img src="@Url.Content("~/images/" + (Model.Pr_Image ?? "default.png"))"
+         class="img-fluid mb-3"
+         style="max-width:400px" />
+
+    <h4>Price: @Model.Pr_Price $</h4>
+    <h5>Category: @Model.Pr_Category</h5>
+
+    <p class="mt-3">@Model.Pr_Description</p>
+
+    <a href="/Product/Edit/@Model.Pr_Id" class="btn btn-warning">Edit</a>
+    <a href="/Product/Delete/@Model.Pr_Id" class="btn btn-danger">Delete</a>
+    <a href="/Product" class="btn btn-secondary">Back</a>
+
+</div>

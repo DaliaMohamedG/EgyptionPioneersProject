@@ -1,61 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Services.Services;
 
 namespace EgyptionPioneersProject.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
-        private readonly IOrderService _service;
+        private readonly IOrderService _orderService;
+        private readonly IProductService _productService;
+        private readonly IPatientService _patientService;
 
-        public OrderController(IOrderService service)
+        public OrderController(IOrderService orderService, IProductService productService, IPatientService patientService)
         {
-            _service = service;
+            _orderService = orderService;
+            _productService = productService;
+            _patientService = patientService;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetAll()
-        {
-            var orders = await _service.GetAllAsync();
-            return Ok(orders);
-        }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Order>> GetById(int id)
-        {
-            var order = await _service.GetByIdAsync(id);
-            if (order == null) return NotFound();
-            return Ok(order);
-        }
 
-        //[HttpGet("patient/{patientId}")]
-        //public async Task<ActionResult<IEnumerable<Order>>> GetByPatientId(int patientId)
-        //{
-        //    var orders = await _service.GetByPatientIdAsync(patientId);
-        //    if (!orders.Any()) return NotFound();
-        //    return Ok(orders);
-        //}
-
-        [HttpPost]
-        public async Task<ActionResult<Order>> Create(Order o)
+        // GET: MyOrders
+        public async Task<IActionResult> MyOrders()
         {
-            var created = await _service.CreateAsync(o);
-            return CreatedAtAction(nameof(GetById), new { id = created.O_Id }, created);
-        }
+            var email = User.Identity.Name;
+            var patient = await _patientService.GetByEmailAsync(email);
+            if (patient == null) return NotFound();
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult<Order>> Update(int id, Order o)
-        {
-            var updated = await _service.UpdateAsync(id, o);
-            if (updated == null) return NotFound();
-            return Ok(updated);
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var deleted = await _service.DeleteAsync(id);
-            if (!deleted) return NotFound();
-            return NoContent();
+            var orders = await _orderService.GetByPatientIdAsync(patient.P_Id);
+            return View(orders);
         }
     }
 }

@@ -1,0 +1,49 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Add Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2>Add New Product</h2>
+    <hr />
+
+    <form method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label>Name</label>
+            <input asp-for="Pr_Name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea asp-for="Pr_Description" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Price</label>
+            <input asp-for="Pr_Price" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label>Stock</label>
+            <input asp-for="Pr_Stock" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label>Category</label>
+            <input asp-for="Pr_Category" class="form-control" />
+        </div>
+
+        <!-- NEW: Upload Image -->
+        <div class="form-group">
+            <label>Product Image (optional)</label>
+            <input type="file" name="imageFile" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3">Add</button>
+        <a href="/Product" class="btn btn-secondary mt-3">Back</a>
+    </form>
+</div>

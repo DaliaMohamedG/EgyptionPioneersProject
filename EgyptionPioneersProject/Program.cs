@@ -55,6 +55,14 @@ namespace EgyptionPioneersProject
             // Swagger (اختياري لمشاريع MVC، ممكن تشيله)
             //builder.Services.AddEndpointsApiExplorer();
             //builder.Services.AddSwaggerGen();
+            // Add session support
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromHours(8);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
             var app = builder.Build();
 
@@ -75,12 +83,15 @@ namespace EgyptionPioneersProject
 
             app.UseRouting();
 
+            app.UseSession();
+
             app.UseAuthorization();
 
             // هنا بنحدد الـ default route للـ MVC
             app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+    name: "default",
+    pattern: "{controller=Pages}/{action=Login}/{id?}");
+
 
             app.Run();
 

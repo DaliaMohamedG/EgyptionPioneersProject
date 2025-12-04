@@ -1,0 +1,54 @@
+﻿@model List<EgyptionPioneersProject.Models.Product>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <h1 class="h3 mb-4 text-gray-800">Skin Care Products</h1>
+
+    <!-- Search Bar -->
+    <form asp-action="Products" method="get" class="mb-4">
+        <div class="input-group" style="max-width: 400px;">
+            <input type="text" name="searchTerm" value="@Context.Request.Query["searchTerm"]"
+                   class="form-control" placeholder="Search products..." />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+    <!-- Form to Place Order -->
+    <form asp-action="PlaceOrder" method="post">
+        <div class="row">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var product in Model)
+                {
+                    <div class="col-lg-4 mb-4">
+                        <div class="card shadow">
+                            <img src="@Url.Content(product.Pr_Image)" class="card-img-top" alt="@product.Pr_Name" />
+
+                            <div class="card-body">
+                                <h5 class="card-title">@product.Pr_Name</h5>
+                                <p class="card-text">@product.Pr_Description</p>
+                                <h6 class="font-weight-bold text-primary">$@product.Pr_Price</h6>
+
+                                <!-- Checkbox for selecting product -->
+                                <div class="form-check mt-2">
+                                    <input type="checkbox" name="selectedProducts" value="@product.Pr_Id" class="form-check-input" id="product_@product.Pr_Id" />
+                                    <label class="form-check-label" for="product_@product.Pr_Id">Add to Order</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-muted">No products found.</p>
+            }
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3">Place Order</button>
+    </form>
+
+</div>

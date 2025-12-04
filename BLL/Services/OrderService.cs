@@ -1,4 +1,5 @@
-﻿using EgyptionPioneersProject.Repositories;
+﻿using EgyptionPioneersProject.Models;
+using EgyptionPioneersProject.Repositories;
 
 namespace Services.Services
 {
@@ -9,6 +10,7 @@ namespace Services.Services
         Task<Order> CreateAsync(Order order);
         Task<Order?> UpdateAsync(int id, Order order);
         Task<bool> DeleteAsync(int id);
+        Task<List<Order>> GetByPatientIdAsync(int patientId);
     }
     public class OrderService : IOrderService
     {
@@ -53,6 +55,24 @@ namespace Services.Services
             await _repo.DeleteAsync(old);
             return true;
         }
+
+        public async Task<List<Order>> GetByPatientIdAsync(int patientId)
+        {
+            // استخدمنا الريبو بدل الكونيكست مباشرة
+            var orders = await _repo.GetAllAsync();
+
+            // فلترة الأوردرات الخاصة بالمريض + تحميل المنتجات المرتبطة
+            return orders
+                   .Where(o => o.P_Id == patientId)
+                   .Select(o =>
+                   {
+                       // تأكد إن المنتجات محملة
+                       o.OrderProducts = o.OrderProducts ?? new List<Order_Product>();
+                       return o;
+                   })
+                   .ToList();
+        }
+
     }
 
 }

@@ -10,10 +10,14 @@ namespace Services.Services
         Task<Doctor> CreateAsync(Doctor doctor);
         Task<Doctor?> UpdateAsync(int id, Doctor doctor);
         Task<bool> DeleteAsync(int id);
+        Task<Doctor?> GetByEmailAsync(string email);
+
     }
     public class DoctorService : IDoctorService
     {
         private readonly IDoctorRepository _repo;
+        public async Task<Doctor?> GetByEmailAsync(string email) =>
+    (await _repo.GetAllAsync()).FirstOrDefault(d => d.D_Email == email);
 
         public DoctorService(IDoctorRepository repo)
         {

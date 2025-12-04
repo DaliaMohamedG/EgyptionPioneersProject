@@ -1,8 +1,115 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Add Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body, h1, h2, h3, h4, h5, h6, p, a, button {
+        font-family: 'Poppins', sans-serif !important;
+    }
+
+    .card h5 {
+        font-weight: 600;
+    }
+
+    .card p {
+        font-weight: 400;
+        font-size: 0.95rem;
+    }
+
+    .card .btn {
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+</style>
+
+<div class="container-fluid">
+
+    <!-- Title -->
+    <!-- Main Banner -->
+    <div class="card shadow mb-5 border-0">
+
+        <div class="card-body text-center">
+            <h4 class="font-weight-bold" style="color: #1A8C9E;"> 
+                Welcome to Your Skin Care Panel </h4>
+            <p class="text-secondary">
+                Manage products, explore skin conditions, and discover skincare guides – all in one place.
+            </p>
+        </div>
+    </div>
+
+
+    <!-- Sections -->
+    <div class="row">
+
+        <!-- Products -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card shadow border-left-primary rounded">
+                <img src="~/images/products.png"
+                     class="card-img-top" style="height: 170px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <h5>Skin Care Products</h5>
+                    <p class="text-muted">Explore all skincare products with details & benefits.</p>
+                    <a href="@Url.Action("Products", "Pages")" class="btn btn-primary btn-sm">View Products</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skin Diseases -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card shadow border-left-danger rounded">
+                <img src="~/images/skin diseases.png"
+                     class="card-img-top" style="height: 170px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <h5>Skin Diseases</h5>
+                    <p class="text-muted">Read symptoms, causes, treatments in Arabic & English.</p>
+                    <a href="@Url.Action("SkinDiseases", "Pages")" class="btn btn-danger btn-sm">View Diseases</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skin Routine -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card shadow border-left-success rounded">
+                <img src="~/images/skin routine.png"
+                     class="card-img-top" style="height: 170px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <h5>Daily Skin Routine</h5>
+                    <p class="text-muted">Learn the best routine for glowing and healthy skin.</p>
+                    <a href="@Url.Action("DailySkinRoutine", "Pages")" class="btn btn-success btn-sm">Open Routine</a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Skin Tips -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card shadow border-left-warning rounded">
+                <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=80"
+                     class="card-img-top" style="height: 170px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <h5>Skin Care Tips</h5>
+                    <p class="text-muted">Important tips to keep your skin healthy & glowing.</p>
+                    <a href="@Url.Action("SkinTips", "Pages")" class="btn btn-warning btn-sm">View Tips</a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Featured Advice -->
+    <div class="card shadow mb-5 border-0 rounded">
+        <div class="card-header py-3 bg-primary text-white rounded-top">
+            <h5 class="m-0 font-weight-bold">Featured Skin Care Advice</h5>
+        </div>
+        <div class="card-body text-center">
+            <p class="mb-3" style="font-style: italic;">“Healthy skin starts with the right routine, hydration, and protection.”</p>
+            <img src="https://images.unsplash.com/photo-1612832021686-1bbd7cfd1e1b?auto=format&fit=crop&w=1200&q=80"
+                 class="img-fluid rounded" style="max-height: 300px; object-fit: cover;">
+        </div>
+    </div>
+
 </div>

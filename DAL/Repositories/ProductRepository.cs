@@ -1,4 +1,5 @@
 ﻿using EgyptionPioneersProject.Data;
+using EgyptionPioneersProject.Models;
 
 namespace EgyptionPioneersProject.Repositories
 {

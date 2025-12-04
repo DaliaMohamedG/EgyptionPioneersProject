@@ -116,6 +116,7 @@ namespace EgyptionPioneersProject.Migrations
             modelBuilder.Entity("EgyptionPioneersProject.Models.Disease_Symptom", b =>
                 {
                     b.Property<int>("Dis_Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<int>("S_Id")
@@ -131,6 +132,7 @@ namespace EgyptionPioneersProject.Migrations
             modelBuilder.Entity("EgyptionPioneersProject.Models.Disease_Treatment", b =>
                 {
                     b.Property<int>("Dis_Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<int>("T_Id")
@@ -263,6 +265,7 @@ namespace EgyptionPioneersProject.Migrations
             modelBuilder.Entity("EgyptionPioneersProject.Models.Order_Product", b =>
                 {
                     b.Property<int>("O_Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<int>("Pr_Id")
@@ -369,6 +372,7 @@ namespace EgyptionPioneersProject.Migrations
             modelBuilder.Entity("EgyptionPioneersProject.Models.Treatment_Product", b =>
                 {
                     b.Property<int>("T_Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<int>("Pr_Id")
@@ -426,6 +430,9 @@ namespace EgyptionPioneersProject.Migrations
 
                     b.Property<string>("Pr_Description")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Pr_Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Pr_Name")

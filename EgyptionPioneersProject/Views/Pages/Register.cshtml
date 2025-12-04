@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container mt-5">
+    <h2>Register</h2>
+    <form asp-action="Register" asp-controller="Pages" method="post">
+        @Html.AntiForgeryToken()
+
+        <div class="form-group mt-3">
+            <label>Name</label>
+            <input type="text" name="P_Name" class="form-control" required />
+        </div>
+
+        <div class="form-group mt-3">
+            <label>Email</label>
+            <input type="email" name="P_Email" class="form-control" required />
+        </div>
+
+        <div class="form-group mt-3">
+            <label>Password</label>
+            <input type="password" name="P_Pass" class="form-control" required />
+        </div>
+
+        <div class="form-group mt-3">
+            <label>Gender</label>
+            <input type="text" name="P_Gender" class="form-control" />
+        </div>
+
+        <div class="form-group mt-3">
+            <label>Age</label>
+            <input type="number" name="P_Age" class="form-control" />
+        </div>
+
+        <div class="form-group mt-3">
+            <label>Skin Type</label>
+            <input type="text" name="Skin_Type" class="form-control" />
+        </div>
+
+        <div class="form-group mt-3">
+            <label>Medical History</label>
+            <textarea name="Medical_History" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4">Register</button>
+        <a asp-action="Login" asp-controller="Pages" class="btn btn-link mt-4">Already have an account? Login</a>
+    </form>
+
+    @if(ViewBag.Error != null)
+    {
+        <div class="alert alert-danger mt-3">@ViewBag.Error</div>
+    }
+</div>

@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>DermaCare</title>
+
+
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <style>
+        body, h1, h2, h3, h4, h5, h6, span, p, a {
+            font-family: 'Poppins', sans-serif !important;
+        }
+    </style>
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+       
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+
+            <!-- ===== Top Bar: Logo (left) + Search (right) ===== -->
+            <div class="topbar d-flex justify-content-between align-items-center px-5 py-4"
+                 style="background: none; box-shadow: none; height: 90px;">
+
+                <!-- Left Logo -->
+                <div class="d-flex align-items-center" style="gap: 10px;">
+                    <i class="fas fa-spa fa-2x" style="color:#1A8C9E;"></i>
+
+                    <div>
+                        <h4 class="m-0 font-weight-bold" style="color:#1A8C9E;">DERMACARE</h4>
+                        <p class="m-0" style="color:#7AC943; font-size:14px;">
+                            Refresh Your Natural Beauty
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Search -->
+                <form class="d-none d-sm-inline-block form-inline" style="width: 300px;">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small"
+                               placeholder="Search..." aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Main Content -->
+            <div id="content">
+
+
+
+                @RenderBody()
+
+            </div>
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <!-- End Content Wrapper -->
+
+    </div>
+    <!-- End Page Wrapper -->
+
+    <a class="scroll-to-top rounded" href="#">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <!-- ... stays the same ... -->
+
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/js/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>
+
+@await RenderSectionAsync("Scripts", required: false)

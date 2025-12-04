@@ -1,4 +1,5 @@
-﻿using EgyptionPioneersProject.Repositories;
+﻿using EgyptionPioneersProject.Models;
+using EgyptionPioneersProject.Repositories;
 
 namespace Services.Services
 {
@@ -43,9 +44,12 @@ namespace Services.Services
             old.Pr_Stock = p.Pr_Stock;
             old.Pr_Category = p.Pr_Category;
 
+            old.Pr_Image = p.Pr_Image;
+
             await _repo.UpdateAsync(old);
             return old;
         }
+
 
         public async Task<bool> DeleteAsync(int id)
         {
