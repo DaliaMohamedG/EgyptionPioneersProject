@@ -1,4 +1,5 @@
-﻿using EgyptionPioneersProject.Models;
+﻿using DAL.Models;
+using EgyptionPioneersProject.Models;
 using Microsoft.EntityFrameworkCore;
 namespace EgyptionPioneersProject.Data
 {
@@ -27,6 +28,6 @@ namespace EgyptionPioneersProject.Data
         public DbSet<Symptom> Symptoms { get; set; }
         public DbSet<Treatment> Treatments { get; set; }
         public DbSet<Treatment_Product> Treatment_Products { get; set; }
-
+        public DbSet<Admin> Admins { get; set; }
     }
 }

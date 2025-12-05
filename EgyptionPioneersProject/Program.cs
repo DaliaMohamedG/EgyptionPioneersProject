@@ -11,8 +11,18 @@ namespace EgyptionPioneersProject
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddControllersWithViews(); // MVC
+            // Authentication
+            builder.Services.AddAuthentication("Cookies")
+                .AddCookie("Cookies", options =>
+                {
+                    options.LoginPath = "/Pages/Login";
+                });
+
+            // Authorization
+            builder.Services.AddAuthorization();
+
+            // MVC
+            builder.Services.AddControllersWithViews();
 
             // DbContext
             builder.Services.AddDbContext<AppDbContext>(options =>
@@ -52,10 +62,7 @@ namespace EgyptionPioneersProject
             builder.Services.AddScoped<INotificationService, NotificationService>();
             builder.Services.AddScoped<IMedicalRecordService, MedicalRecordService>();
 
-            // Swagger (اختياري لمشاريع MVC، ممكن تشيله)
-            //builder.Services.AddEndpointsApiExplorer();
-            //builder.Services.AddSwaggerGen();
-            // Add session support
+            // Session
             builder.Services.AddDistributedMemoryCache();
             builder.Services.AddSession(options =>
             {
@@ -66,16 +73,15 @@ namespace EgyptionPioneersProject
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline
+            // Middleware
             if (app.Environment.IsDevelopment())
             {
-                // في وضع التطوير، ممكن نخلي الـ Developer Exception Page يظهر
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error"); // صفحة خطأ عامة
-                app.UseHsts(); // HTTP Strict Transport Security
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
@@ -83,18 +89,16 @@ namespace EgyptionPioneersProject
 
             app.UseRouting();
 
-            app.UseSession();
-
+            app.UseAuthentication();   // لازم قبل Authorization
             app.UseAuthorization();
 
-            // هنا بنحدد الـ default route للـ MVC
-            app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Pages}/{action=Login}/{id?}");
+            app.UseSession();
 
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Pages}/{action=Login}/{id?}");
 
             app.Run();
-
         }
     }
 }

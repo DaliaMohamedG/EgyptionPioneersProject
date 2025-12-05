@@ -14,7 +14,6 @@ namespace EgyptionPioneersProject.Models
         public string D_Specialization { get; set; }
         public string D_Experience { get; set; }
         public string D_Working_Hour { get; set; }
-
         // Navigation Properties
         public ICollection<Appointment> Appointments { get; set; }
         public ICollection<Notification> Notifications { get; set; }

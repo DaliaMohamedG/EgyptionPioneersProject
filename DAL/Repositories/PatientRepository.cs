@@ -23,6 +23,7 @@ namespace EgyptionPioneersProject.Repositories
 
         public async Task<Patient?> GetByEmailAsync(string email)
         {
+
             return await _dbSet.FirstOrDefaultAsync(p => p.P_Email == email);
         }
 

@@ -1,0 +1,34 @@
+﻿@model List<EgyptionPioneersProject.Models.Appointment>
+
+<h2>My Appointments</h2>
+
+@if (!Model.Any())
+{
+    <p>You have no appointments yet.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Appointment ID</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ap in Model)
+            {
+                <tr>
+                    <td>@ap.Ap_Id</td>
+                    <td>@ap.Doctor.D_Name</td>
+                    <td>@ap.A_Date.ToString("yyyy-MM-dd")</td>
+                    <td>@ap.A_Time.ToString(@"hh\:mm")</td>
+                    <td>@ap.A_Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

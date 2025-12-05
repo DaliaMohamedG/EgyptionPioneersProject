@@ -11,7 +11,7 @@
 
     <title>DermaCare</title>
 
-  
+
     <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -110,7 +110,7 @@
 
             <!-- Products -->
             <li class="nav-item">
-               <!-- <a class="nav-link" href="@Url.Action("Products", "Pages")"> -->
+                <!-- <a class="nav-link" href="@Url.Action("Products", "Pages")"> -->
                 <a class="nav-link" href="@Url.Action("Index", "Product")">
 
                     <i class="fas fa-fw fa-chart-area"></i>
@@ -148,8 +148,8 @@
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
-          
-            <!-- ===== Top Bar: Logo (left) + Search (right) ===== -->
+
+            <!-- ===== Top Bar: Logo (left) + Search + Cart ===== -->
             <div class="topbar d-flex justify-content-between align-items-center px-5 py-4"
                  style="background: none; box-shadow: none; height: 90px;">
 
@@ -165,24 +165,41 @@
                     </div>
                 </div>
 
-                <!-- Right Search -->
-                <form class="d-none d-sm-inline-block form-inline" style="width: 300px;">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small"
-                               placeholder="Search..." aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
+                <!-- Right Section: Search + Cart -->
+                <div class="d-flex align-items-center" style="gap: 20px;">
+
+                    <!-- Search -->
+                    <form class="d-none d-sm-inline-block form-inline" style="width: 300px;">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small"
+                                   placeholder="Search..." aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+
+                    <!-- Cart Icon -->
+                    <a href="@Url.Action("MyOrders", "Pages")"
+                       class="btn btn-light rounded-circle"
+                       style="width:45px; height:45px; display:flex; align-items:center; justify-content:center; box-shadow:0 0 5px #ccc;">
+                        <i class="fas fa-shopping-cart" style="font-size:18px; color:#1A8C9E;"></i>
+                    </a>
+                    <!-- Appointments Icon -->
+                    <a href="@Url.Action("BookAppointment", "Pages")" class="btn btn-light position-relative">
+                        <i class="fas fa-calendar-check fa-lg"></i>
+                    </a>
+
+                </div>
             </div>
+
 
             <!-- Main Content -->
             <div id="content">
 
-               
+
 
                 @RenderBody()
 

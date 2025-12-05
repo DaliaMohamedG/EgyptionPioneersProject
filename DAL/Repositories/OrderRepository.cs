@@ -21,7 +21,12 @@ namespace EgyptionPioneersProject.Repositories
         }
 
         public async Task<List<Order>> GetByPatientIdAsync(int patientId)
-            => await _dbSet.Where(o => o.P_Id == patientId).ToListAsync();
+            => await _context.Orders
+        .Include(o => o.OrderProducts)
+        .ThenInclude(op => op.Product)
+        .Where(o => o.P_Id == patientId)
+        .OrderByDescending(o => o.O_Date)
+        .ToListAsync();
 
         public async Task UpdateAsync(Order old)
         {
